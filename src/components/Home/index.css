@@ -1,0 +1,160 @@
+.home-body-section-loader {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-body-section {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+.buttonRetry {
+  background-color: blue;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ul-tab {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  overflow: auto;
+}
+.tab_list_menu {
+  border-bottom: 3px inset #f9f7f7;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-top: 1px outset #f9f7f7;
+  height: 10vh;
+}
+.list_tab {
+  margin-right: 10px;
+  min-width: 200px;
+  cursor: pointer;
+}
+.tab_list_data {
+  min-height: 80vh;
+}
+.button-tab {
+  border: none;
+  background-color: transparent;
+  font-family: Georgia;
+  cursor: pointer;
+}
+
+.buttonActive {
+  padding-bottom: 4px;
+  color: red;
+  font-family: Georgia;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid white;
+  border-bottom: 3px solid red;
+}
+.itemsSection {
+  border: 2px inset #f2ebeb;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 15px;
+  border-radius: 10px;
+}
+.dishImage {
+  width: 90px;
+  height: 100px;
+}
+.countSection {
+  background-color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+}
+.countpara {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 20px;
+}
+.count {
+  color: white;
+  font-size: 25px;
+}
+
+.calaries {
+  color: goldenrod;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Roboto;
+}
+.dotSection {
+  min-width: 25px;
+  height: 25px;
+  border: 2px solid green;
+  margin-right: 20px;
+}
+.dotSectionBody {
+  min-width: 15px;
+  height: 15px;
+  margin: 3px;
+  border-radius: 50%;
+}
+.section1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-width: 50%;
+}
+.heading {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Georgia;
+}
+.addonCat {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Roboto;
+  color: blue;
+}
+.available {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Roboto;
+  color: red;
+}
+.section2 {
+  min-width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.description {
+  color: rgb(165, 144, 144);
+  font-size: 13px;
+  font-family: Roboto;
+  font-weight: bold;
+}
+.currency {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Roboto;
+}
