@@ -108,20 +108,16 @@ const Home = () => {
   }
 
   const getTheDataItems = id => {
-    const result = category.find(each => {
-      if (each.menu_category_id === id) {
-        return {
-          ...each,
-        }
+    const result = category.find(each => each.menu_category_id === id)
+    if (result) {
+      setDish(result.category_dishes)
+      const singleId = ids.find(each => each.menu_category_id === id)
+      if (!singleId) {
+        setAllCategory(prev => [...prev, ...result.category_dishes])
+        setIds(prev => [...prev, result])
       }
-    })
-    setDish(result.category_dishes)
-    const singleId = ids.find(each => each.menu_category_id === id)
-    if (singleId === undefined) {
-      setAllCategory([...allCategory, ...result.category_dishes])
-      setIds([...ids, result])
+      setActiveTab(result.menu_category_id)
     }
-    setActiveTab(result.menu_category_id)
   }
 
   const loadingView = () => (
