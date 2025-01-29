@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
+import CartContext from '../../ReactContext/CartContext'
 import './index.css'
 
 const apiContentResponse = {
@@ -15,11 +16,10 @@ const Home = () => {
     state: apiContentResponse.initial,
   })
   const [category, setCategory] = useState([])
-  const [allCategory, setAllCategory] = useState([])
   const [dish, setDish] = useState([])
+  const [allCategory, setAllCategory] = useState([])
   const [ids, setIds] = useState([])
   const [activeTab, setActiveTab] = useState()
-  const [cart, setCart] = useState([])
   const [rest, setrest] = useState([])
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Home = () => {
       setData({state: apiContentResponse.isFailed})
     }
   }
-
+  console.log(rest)
   const countIncrease = id => {
     const allCategoryquatityIncrease = allCategory.map(each => {
       if (each.dish_id === id) {
@@ -56,31 +56,6 @@ const Home = () => {
       return each
     })
     setAllCategory(allCategoryquatityIncrease)
-    const idIsInCard = cart.find(each => each.dish_id === id)
-    if (idIsInCard !== undefined) {
-      const cartFiltered = cart.map(items => {
-        if (items.dish_id === id) {
-          return {
-            ...items,
-            quantity: items.quantity + 1,
-          }
-        }
-        return items
-      })
-      setCart(cartFiltered)
-    } else {
-      allCategory.filter(each => {
-        if (each.dish_id === id) {
-          setCart([
-            ...cart,
-            {
-              ...each,
-              quantity: each.quantity === undefined ? 1 : each.quantity + 1,
-            },
-          ])
-        }
-      })
-    }
   }
 
   const countDecrease = id => {
@@ -94,17 +69,6 @@ const Home = () => {
       return each
     })
     setAllCategory(allCategoryquatityIncrease)
-    const cartFilted = cart.map(items => {
-      if (items.dish_id === id) {
-        return {
-          ...items,
-          quantity: items.quantity === 0 ? 0 : items.quantity - 1,
-        }
-      }
-      return items
-    })
-    const filteredDataToCartIN = cartFilted.filter(each => each.quantity > 0)
-    setCart(filteredDataToCartIN)
   }
 
   const getTheDataItems = id => {
@@ -133,6 +97,7 @@ const Home = () => {
       </div>
     </div>
   )
+
   const isfailedView = () => (
     <div className="home-body-section-loader">
       <div className="loading">
@@ -146,93 +111,127 @@ const Home = () => {
   )
 
   const succesView = () => (
-    <div className="home-body-section">
-      <div className="tab_list_menu">
-        <ul className="ul-tab">
-          {category.map(each => (
-            <li className="list_tab" key={each.menu_category_id}>
-              <button
-                type="button"
-                className={
-                  activeTab === each.menu_category_id
-                    ? 'buttonActive'
-                    : 'button-tab'
-                }
-                onClick={() => getTheDataItems(each.menu_category_id)}
-              >
-                {each.menu_category}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="tab_list_data">
-        {dish.map(each => {
-          const backgroundColore_Are = [
-            'green',
-            'blue',
-            'red',
-            'pink',
-            'yellow',
-            'gold',
-          ]
-          const backgroundColorARE = Math.floor(Math.random() * 6)
-          return (
-            <div className="itemsSection" key={each.dish_id}>
-              <div className="section1">
-                <div className="dotSection">
-                  <p
-                    className="dotSectionBody"
-                    style={{
-                      backgroundColor: backgroundColore_Are[backgroundColorARE],
-                    }}
-                  />
-                </div>
-                <div className="detailsSection">
-                  <h1 className="heading">{each.dish_name}</h1>
-                  <p className="currency">
-                    {each.dish_currency} {each.dish_price}
-                  </p>
-                  <p className="description">{each.dish_description}</p>
-                  {each.dish_Availability ? (
-                    <div className="countSection">
+    <CartContext.Consumer>
+      {value => {
+        const {addCartItem} = value
+        return (
+          <>
+            <Header />
+            <div className="home-body-section">
+              <div className="tab_list_menu">
+                <ul className="ul-tab">
+                  {category.map(each => (
+                    <li className="list_tab" key={each.menu_category_id}>
                       <button
                         type="button"
-                        className="countpara"
-                        onClick={() => countDecrease(each.dish_id)}
+                        className={
+                          activeTab === each.menu_category_id
+                            ? 'buttonActive'
+                            : 'button-tab'
+                        }
+                        onClick={() => getTheDataItems(each.menu_category_id)}
                       >
-                        -
+                        {each.menu_category}
                       </button>
-                      <p className="count">
-                        {allCategory.find(item => item.dish_id === each.dish_id)
-                          ?.quantity || 0}
-                      </p>
-                      <button
-                        type="button"
-                        className="countpara"
-                        onClick={() => countIncrease(each.dish_id)}
-                      >
-                        +
-                      </button>
-                    </div>
-                  ) : null}
-                  <p className="addonCat">
-                    {each.addonCat.length > 1 && 'Customizations available'}
-                  </p>
-                  <p className="available">
-                    {each.dish_Availability ? null : 'Not available'}
-                  </p>
-                </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="section2">
-                <p className="calaries">{each.dish_calories} Calories</p>
-                <img src={each.dish_image} className="dishImage" />
+              <div className="tab_list_data">
+                {dish.map(each => {
+                  const backgroundColore_Are = [
+                    'green',
+                    'blue',
+                    'red',
+                    'pink',
+                    'yellow',
+                    'gold',
+                  ]
+                  const backgroundColorARE = Math.floor(Math.random() * 6)
+                  const disabledBoolen = allCategory.find(item => {
+                    if (item.dish_id === each.dish_id) {
+                      if (item.quantity > 0) {
+                        return true
+                      }
+                      return false
+                    }
+                  })
+
+                  return (
+                    <div className="itemsSection" key={each.dish_id}>
+                      <div className="section1">
+                        <div className="dotSection">
+                          <p
+                            className="dotSectionBody"
+                            style={{
+                              backgroundColor:
+                                backgroundColore_Are[backgroundColorARE],
+                            }}
+                          />
+                        </div>
+                        <div className="detailsSection">
+                          <h1 className="heading">{each.dish_name}</h1>
+                          <p className="currency">
+                            {each.dish_currency} {each.dish_price}
+                          </p>
+                          <p className="description">{each.dish_description}</p>
+                          {each.dish_Availability ? (
+                            <>
+                              <div className="countSection">
+                                <button
+                                  type="button"
+                                  className="countpara"
+                                  onClick={() => countDecrease(each.dish_id)}
+                                >
+                                  -
+                                </button>
+                                <p className="count">
+                                  {allCategory.find(
+                                    item => item.dish_id === each.dish_id,
+                                  )?.quantity || 0}
+                                </p>
+                                <button
+                                  type="button"
+                                  className="countpara"
+                                  onClick={() => countIncrease(each.dish_id)}
+                                >
+                                  +
+                                </button>
+                              </div>
+                              <button
+                                type="button"
+                                disabled={!disabledBoolen}
+                                className="add-to-cartButton"
+                                onClick={() => addCartItem(allCategory, each)}
+                              >
+                                ADD TO CART
+                              </button>
+                            </>
+                          ) : null}
+                          <p className="addonCat">
+                            {each.addonCat.length > 1 &&
+                              'Customizations available'}
+                          </p>
+                          <p className="available">
+                            {each.dish_Availability ? null : 'Not available'}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="section2">
+                        <p className="calaries">
+                          {each.dish_calories} Calories
+                        </p>
+                        <img src={each.dish_image} className="dishImage" />
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
-          )
-        })}
-      </div>
-    </div>
+          </>
+        )
+      }}
+    </CartContext.Consumer>
   )
 
   const renderResponse = () => {
@@ -249,11 +248,6 @@ const Home = () => {
     }
   }
 
-  return (
-    <>
-      <Header cart={cart} rest={rest} />
-      {renderResponse()}
-    </>
-  )
+  return <>{renderResponse()}</>
 }
 export default Home

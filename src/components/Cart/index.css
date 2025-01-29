@@ -1,0 +1,140 @@
+.cart-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+  padding: 20px;
+}
+.remove-all-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.remove-all-Button {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: bold;
+  color: blue;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.cart-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: 5px inset green;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.remove-Icon {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.cart-currency {
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: bold;
+  color: blue;
+  margin-right: 5px;
+}
+.cart-count {
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: bold;
+  color: blue;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.cart-heading {
+  font-size: 28px;
+  font-family: Roboto;
+  font-weight: bold;
+  color: green;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.cart-countSection {
+  background-color: rgb(87, 197, 87);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+}
+.cart-countpara {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+.emptyCart-Image {
+  width: 25%;
+}
+.empty-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/* ****************************************************************************************** */
+
+@media (max-width: 768px) {
+  .cart-currency {
+    font-size: 16px;
+    font-family: Roboto;
+    font-weight: bold;
+    color: blue;
+    margin-right: 5px;
+  }
+  .cart-count {
+    font-size: 16px;
+    font-family: Roboto;
+    font-weight: bold;
+    color: blue;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .cart-heading {
+    font-size: 16px;
+    font-family: Roboto;
+    font-weight: bold;
+    color: green;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .cart-countSection {
+    background-color: rgb(87, 197, 87);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+  }
+  .cart-countpara {
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    font-family: Roboto;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+  }
+  .emptyCart-Image {
+    width: 50%;
+  }
+}
