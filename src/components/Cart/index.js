@@ -31,10 +31,15 @@ const Cart = () => {
                     </button>
                   </div>
                   {cartList.map(each => {
+                    // const dishImage = each.dish_image
                     if (each.quantity > 0) {
                       return (
                         <div className="cart-item-container">
-                          <img src={each.dish_image} className="dishImage" />
+                          <img
+                            src={each.dish_image}
+                            className="dishImage"
+                            alt="dishImage"
+                          />
                           <h1 className="cart-heading">{each.dish_name}</h1>
                           <p className="cart-currency">
                             {each.dish_currency} {each.dish_price}
@@ -42,7 +47,7 @@ const Cart = () => {
                           <div className="cart-countSection">
                             <button
                               type="button"
-                              className="cart-countpara"
+                              className="cart-decrease-countpara"
                               onClick={() =>
                                 decrementCartItemQuantity(each.dish_id)
                               }

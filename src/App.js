@@ -10,6 +10,11 @@ import './App.css'
 // write your code here
 const App = () => {
   const [cartList, setCartList] = useState([])
+  const [restaruentName, setRestarentName] = useState([])
+
+  const restName = name => {
+    setRestarentName(name)
+  }
 
   const addCartItem = (allcate, each) => {
     // console.log(allcate)
@@ -19,7 +24,7 @@ const App = () => {
       setCartList(prev => [...prev, addtoCart])
     }
   }
-  console.log(cartList)
+  // console.log(cartList)
   const removeAllCartItems = () => {
     setCartList([])
   }
@@ -67,6 +72,8 @@ const App = () => {
     <CartContext.Provider
       value={{
         cartList,
+        restaruentName,
+        restName: restName,
         addCartItem: addCartItem,
         removeAllCartItems: removeAllCartItems,
         removeCartItem: removeCartItem,

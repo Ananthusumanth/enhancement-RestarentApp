@@ -44,7 +44,6 @@ const Home = () => {
       setData({state: apiContentResponse.isFailed})
     }
   }
-  console.log(rest)
   const countIncrease = id => {
     const allCategoryquatityIncrease = allCategory.map(each => {
       if (each.dish_id === id) {
@@ -113,9 +112,11 @@ const Home = () => {
   const succesView = () => (
     <CartContext.Consumer>
       {value => {
-        const {addCartItem} = value
+        const {addCartItem, restName} = value
+
         return (
           <>
+            {true && restName(rest)}
             <Header />
             <div className="home-body-section">
               <div className="tab_list_menu">
@@ -198,14 +199,15 @@ const Home = () => {
                                   +
                                 </button>
                               </div>
-                              <button
-                                type="button"
-                                disabled={!disabledBoolen}
-                                className="add-to-cartButton"
-                                onClick={() => addCartItem(allCategory, each)}
-                              >
-                                ADD TO CART
-                              </button>
+                              {disabledBoolen && (
+                                <button
+                                  type="button"
+                                  className="add-to-cartButton"
+                                  onClick={() => addCartItem(allCategory, each)}
+                                >
+                                  ADD TO CART
+                                </button>
+                              )}
                             </>
                           ) : null}
                           <p className="addonCat">
@@ -221,7 +223,11 @@ const Home = () => {
                         <p className="calaries">
                           {each.dish_calories} Calories
                         </p>
-                        <img src={each.dish_image} className="dishImage" />
+                        <img
+                          src={each.dish_image}
+                          className="dishImage"
+                          alt="dishImage"
+                        />
                       </div>
                     </div>
                   )
