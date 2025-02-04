@@ -226,7 +226,7 @@ const Home = () => {
                         <img
                           src={each.dish_image}
                           className="dishImage"
-                          alt="dishImage"
+                          alt={each.dish_name}
                         />
                       </div>
                     </div>

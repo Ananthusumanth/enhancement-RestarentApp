@@ -38,7 +38,7 @@ const Cart = () => {
                           <img
                             src={each.dish_image}
                             className="dishImage"
-                            alt="dishImage"
+                            alt={each.dish_name}
                           />
                           <h1 className="cart-heading">{each.dish_name}</h1>
                           <p className="cart-currency">
