@@ -22,11 +22,6 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState()
   const [rest, setrest] = useState([])
 
-  useEffect(() => {
-    setData({state: apiContentResponse.in_progress})
-    getApiData()
-  }, [])
-
   const getApiData = async () => {
     const url =
       'https://apis2.ccbp.in/restaurant-app/restaurant-menu-list-details'
@@ -44,6 +39,12 @@ const Home = () => {
       setData({state: apiContentResponse.isFailed})
     }
   }
+
+  useEffect(() => {
+    setData({state: apiContentResponse.in_progress})
+    getApiData()
+  }, [])
+
   const countIncrease = id => {
     const allCategoryquatityIncrease = allCategory.map(each => {
       if (each.dish_id === id) {
@@ -140,7 +141,7 @@ const Home = () => {
               </div>
               <div className="tab_list_data">
                 {dish.map(each => {
-                  const backgroundColore_Are = [
+                  const backgroundColoreAre = [
                     'green',
                     'blue',
                     'red',
@@ -150,12 +151,7 @@ const Home = () => {
                   ]
                   const backgroundColorARE = Math.floor(Math.random() * 6)
                   const disabledBoolen = allCategory.find(item => {
-                    if (item.dish_id === each.dish_id) {
-                      if (item.quantity > 0) {
-                        return true
-                      }
-                      return false
-                    }
+                    return item.dish_id === each.dish_id && item.quantity > 0
                   })
 
                   return (
@@ -166,7 +162,7 @@ const Home = () => {
                             className="dotSectionBody"
                             style={{
                               backgroundColor:
-                                backgroundColore_Are[backgroundColorARE],
+                                backgroundColoreAre[backgroundColorARE],
                             }}
                           />
                         </div>
@@ -250,7 +246,7 @@ const Home = () => {
       case apiContentResponse.success:
         return succesView()
       default:
-        null
+        return loadingView()
     }
   }
 

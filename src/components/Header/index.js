@@ -1,7 +1,7 @@
 import {Link, withRouter} from 'react-router-dom'
+import Cookies from 'js-cookie'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import CartContext from '../../ReactContext/CartContext'
-import Cookies from 'js-cookie'
 import './index.css'
 
 const Header = props => {

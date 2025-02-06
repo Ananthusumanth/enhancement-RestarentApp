@@ -1,6 +1,6 @@
+import {IoCloseCircle} from 'react-icons/io5'
 import Header from '../Header'
 import CartContext from '../../ReactContext/CartContext'
-import {IoCloseCircle} from 'react-icons/io5'
 import './index.css'
 
 const Cart = () => {
@@ -31,50 +31,47 @@ const Cart = () => {
                     </button>
                   </div>
                   {cartList.map(each => {
-                    // const dishImage = each.dish_image
-                    if (each.quantity > 0) {
-                      return (
-                        <div className="cart-item-container">
-                          <img
-                            src={each.dish_image}
-                            className="dishImage"
-                            alt={each.dish_name}
-                          />
-                          <h1 className="cart-heading">{each.dish_name}</h1>
-                          <p className="cart-currency">
-                            {each.dish_currency} {each.dish_price}
-                          </p>
-                          <div className="cart-countSection">
-                            <button
-                              type="button"
-                              className="cart-decrease-countpara"
-                              onClick={() =>
-                                decrementCartItemQuantity(each.dish_id)
-                              }
-                            >
-                              -
-                            </button>
-                            <p className="cart-count">{each.quantity}</p>
-                            <button
-                              type="button"
-                              className="cart-countpara"
-                              onClick={() =>
-                                incrementCartItemQuantity(each.dish_id)
-                              }
-                            >
-                              +
-                            </button>
-                          </div>
+                    return (
+                      <div className="cart-item-container">
+                        <img
+                          src={each.dish_image}
+                          className="dishImage"
+                          alt={each.dish_name}
+                        />
+                        <h1 className="cart-heading">{each.dish_name}</h1>
+                        <p className="cart-currency">
+                          {each.dish_currency} {each.quantity * each.dish_price}
+                        </p>
+                        <div className="cart-countSection">
                           <button
                             type="button"
-                            className="remove-Icon"
-                            onClick={() => removeCartItem(each.dish_id)}
+                            className="cart-decrease-countpara"
+                            onClick={() =>
+                              decrementCartItemQuantity(each.dish_id)
+                            }
                           >
-                            <IoCloseCircle size={30} />
+                            -
+                          </button>
+                          <p className="cart-count">{each.quantity}</p>
+                          <button
+                            type="button"
+                            className="cart-countpara"
+                            onClick={() =>
+                              incrementCartItemQuantity(each.dish_id)
+                            }
+                          >
+                            +
                           </button>
                         </div>
-                      )
-                    }
+                        <button
+                          type="button"
+                          className="remove-Icon"
+                          onClick={() => removeCartItem(each.dish_id)}
+                        >
+                          <IoCloseCircle size={30} />
+                        </button>
+                      </div>
+                    )
                   })}
                 </>
               ) : (

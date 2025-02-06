@@ -17,14 +17,12 @@ const App = () => {
   }
 
   const addCartItem = (allcate, each) => {
-    // console.log(allcate)
     const cartisHavingId = cartList.find(item => item.dish_id === each.dish_id)
     if (cartisHavingId === undefined) {
       const addtoCart = allcate.find(items => items.dish_id === each.dish_id)
       setCartList(prev => [...prev, addtoCart])
     }
   }
-  // console.log(cartList)
   const removeAllCartItems = () => {
     setCartList([])
   }
