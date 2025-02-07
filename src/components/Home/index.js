@@ -150,9 +150,9 @@ const Home = () => {
                     'gold',
                   ]
                   const backgroundColorARE = Math.floor(Math.random() * 6)
-                  const disabledBoolen = allCategory.find(item => {
-                    return item.dish_id === each.dish_id && item.quantity > 0
-                  })
+                  const disabledBoolen = allCategory.find(
+                    item => item.dish_id === each.dish_id && item.quantity > 0,
+                  )
 
                   return (
                     <div className="itemsSection" key={each.dish_id}>

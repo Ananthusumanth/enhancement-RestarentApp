@@ -71,12 +71,12 @@ const App = () => {
       value={{
         cartList,
         restaruentName,
-        restName: restName,
-        addCartItem: addCartItem,
-        removeAllCartItems: removeAllCartItems,
-        removeCartItem: removeCartItem,
-        incrementCartItemQuantity: incrementCartItemQuantity,
-        decrementCartItemQuantity: decrementCartItemQuantity,
+        restName,
+        addCartItem,
+        removeAllCartItems,
+        removeCartItem,
+        incrementCartItemQuantity,
+        decrementCartItemQuantity,
       }}
     >
       <Switch>

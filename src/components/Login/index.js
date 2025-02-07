@@ -45,41 +45,37 @@ const Login = props => {
     }
   }
 
-  const renderPasswordField = () => {
-    return (
-      <>
-        <label className="input-label" htmlFor="password">
-          PASSWORD
-        </label>
-        <input
-          type="password"
-          id="password"
-          className="input-field"
-          value={password}
-          onChange={onChangePassword}
-          placeholder="Password"
-        />
-      </>
-    )
-  }
+  const renderPasswordField = () => (
+    <>
+      <label className="input-label" htmlFor="password">
+        PASSWORD
+      </label>
+      <input
+        type="password"
+        id="password"
+        className="input-field"
+        value={password}
+        onChange={onChangePassword}
+        placeholder="Password"
+      />
+    </>
+  )
 
-  const renderUsernameField = () => {
-    return (
-      <>
-        <label className="input-label" htmlFor="username">
-          USERNAME
-        </label>
-        <input
-          type="text"
-          id="username"
-          className="input-field"
-          value={username}
-          onChange={onChangeUsername}
-          placeholder="Username"
-        />
-      </>
-    )
-  }
+  const renderUsernameField = () => (
+    <>
+      <label className="input-label" htmlFor="username">
+        USERNAME
+      </label>
+      <input
+        type="text"
+        id="username"
+        className="input-field"
+        value={username}
+        onChange={onChangeUsername}
+        placeholder="Username"
+      />
+    </>
+  )
 
   const jwtToken = Cookies.get('jwt_token')
   if (jwtToken !== undefined) {
